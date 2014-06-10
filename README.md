@@ -1,4 +1,4 @@
-Conway'a Game of Life with KDB+ and Enterprise Components
+Conway's Game of Life with KDB+ and Enterprise Components
 =========================================================
 
 Download KDB+, yak and DEVnet's Enterprise Components:
