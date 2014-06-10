@@ -1,14 +1,14 @@
 Conway'a Game of Life with KDB+ and Enterprise Components
 =========================================================
 
-1. Download KDB+, yak and DEVnet's Enterprise Components:
+Download KDB+, yak and DEVnet's Enterprise Components:
 
 ```bash
   $ wget http://www.devnet.de/fileadmin/downloads/ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz
   $ tar -xvf ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz
 ```
 
-2. Set up directory structure expected by the configuration in any empty directory
+Set up directory structure expected by the configuration in any empty directory
 
 ```bash
   $ mkdir bin
@@ -20,13 +20,13 @@ Conway'a Game of Life with KDB+ and Enterprise Components
 ```
   The last command has to be done from the same directory where the bin directory was created above.
 
-3. Source the environment
+Source the environment
 
 ```bash
   $ source etc/env.sh
 ```
 
-4. Check if yak is working
+Check if yak is working
 
 ```bash
   yak info life
@@ -34,7 +34,7 @@ Conway'a Game of Life with KDB+ and Enterprise Components
   Yak distributed with ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz is a 32bit application. If you are running a 64-bit system you may have to install some compatibility libraries.
 
 
-5. Start the admin process
+Start the admin process
 
 ```
   $ yak start life
@@ -42,7 +42,7 @@ Conway'a Game of Life with KDB+ and Enterprise Components
         life.admin                      OK    
 ```
 
-6. Start the grid cells	
+Start the grid cells	
 
 ```bash
   $ yak start grid
@@ -57,7 +57,7 @@ Conway'a Game of Life with KDB+ and Enterprise Components
         grid.cell_99                    OK
 ```
 
-7. check the status of the grid processes
+Check the status of the grid processes
 
 ```bash
   $ yak info grid
@@ -71,7 +71,7 @@ Conway'a Game of Life with KDB+ and Enterprise Components
   grid.cell_99       3434  17099  RUNNING     2014.05.27 14:04:11
 ```
 
-8. Check the port the life.admin process is listening at
+Check the port the life.admin process is listening at
 
 ```bash
   $ yak info life
