@@ -17,8 +17,8 @@ Conway'a Game of Life with KDB+ and Enterprise Components
   $ ln -s ../DemoSystem/bin/yak/  bin/yak
   $ ln -s <path to the LifeWithEC distribution> bin/life
   $ ln -s <path to the LifeWithEC distribution>/etc/ etc
-  Note the last command has to be done from the same directory where the bin directory was created above.
 ```
+  The last command has to be done from the same directory where the bin directory was created above.
 
 3. Source the environment
 
@@ -46,10 +46,10 @@ Conway'a Game of Life with KDB+ and Enterprise Components
 
 ```bash
   $ yak start grid
-  Starting components...                                                                                                                                                                                                                 
-        grid.cell_0                     OK                                                                              
-        grid.cell_1                     OK                                     
-        grid.cell_2                     OK                                                         
+  Starting components...                                                                                                    
+        grid.cell_0                     OK
+        grid.cell_1                     OK
+        grid.cell_2                     OK
   ...
         grid.cell_96                    OK
         grid.cell_97                    OK
