@@ -1,0 +1,4 @@
+[group]	
+	cfg.gridi = <type(LONG)>
+	cfg.gridj = <type(LONG)>
+	cfg.generations = <type(INT), default(200)>
