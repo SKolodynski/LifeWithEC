@@ -43,15 +43,17 @@ Start the admin process
 
 ```
   $ yak start life
-  Starting components...                                                                                                                                                                                                                 
-        life.admin                      OK    
+  Starting components...
+  
+        life.admin                      OK
 ```
 
 Start the grid cells	
 
 ```bash
   $ yak start grid
-  Starting components...                                                                                                    
+  Starting components...
+  
         grid.cell_0                     OK
         grid.cell_1                     OK
         grid.cell_2                     OK
