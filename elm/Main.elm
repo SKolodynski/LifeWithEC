@@ -1,10 +1,7 @@
 import String
 import WebSocket
 
--- main = (lift dispGrid) (constant "1111111111,1111111111,1111111111,1111111111,1111111111,1111111111,1111111111,1111111111,1111111111,1111111111")
--- main = asText <~ (helper (constant "start"))
--- main = (lift d1) (helper (constant "start"))
-main = (lift dispGrid) (helper (constant "start"))
+main = dispGrid <~ helper (constant "start")
 
 disp:String -> Element
 disp s = flow right (map dispChar (String.toList s))
