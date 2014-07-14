@@ -1,6 +1,11 @@
 Conway's Game of Life with KDB+ and Enterprise Components
 =========================================================
 
+For information on what is this, please have a look at [this](https://slawekk.wordpress.com/2014/05/20/game-of-life-with-enterprise-components/) post at the  Formalized Mathematics blog.
+
+Setup
+-----
+
 Download KDB+, yak and DEVnet's Enterprise Components:
 
 ```bash
@@ -38,15 +43,17 @@ Start the admin process
 
 ```
   $ yak start life
-  Starting components...                                                                                                                                                                                                                 
-        life.admin                      OK    
+  Starting components...
+  
+        life.admin                      OK
 ```
 
 Start the grid cells	
 
 ```bash
   $ yak start grid
-  Starting components...                                                                                                    
+  Starting components...
+  
         grid.cell_0                     OK
         grid.cell_1                     OK
         grid.cell_2                     OK
