@@ -44,13 +44,14 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
   };
 
 / generates a random initial cell state. The arguments are ignored here.
-.cell.getInitState:{[ci;cj] system "S ",string `int$.z.t;:0~rand 2};
+.cell.getInitState:{[ci;cj] system "S ",string `int$.z.t;:0~rand 3};
 
 //.cell.getInitState:{[ci;cj] (ci in 1 2) and cj in 0 1};
   
 / function that runs on successful admin connection
 .cell.onAdminConnection:{[admin]
   .log.info[`cell] "successful admin connection";
+  .hnd.h[`life.admin](`.admin.cellUp;.cell.i;.cell.j);
   / tell the admin the timestep, cooordinates and initial state
   .hnd.h[`life.admin](`.admin.upd;0;.cell.i;.cell.j;.cell.initState);
   / set up the callbacks and open the connections to neighbors

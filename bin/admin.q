@@ -10,13 +10,29 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
 .sl.init[`admin];
 .sl.lib["cfgRdr/cfgRdr"];
 
+/ dictionary keyed by timestamp for storing current grid state
+.admin.states:()!();
+
+/ dictionary keyed by timestamp counting cell state updates
+.admin.updCount:()!();
+
+/ table that collects the results of the simulation
+.admin.frames:([] t:`long$();ts:`timestamp$();frame:());
+
+/ stores information on when cells become ready i.e. connections to all neighbors are up
+.admin.cellsReady:([] ts:`timestamp$();ci:`long$();cj:`long$();server:`$());
+
+/ main initialization code
 .sl.main:{
   .log.info[`admin] "starting grid admin";
   .admin.gridi:.cr.getCfgField[`THIS;`group;`cfg.gridi];
   .admin.gridj:.cr.getCfgField[`THIS;`group;`cfg.gridj];
   .admin.gridCount:.admin.gridi*.admin.gridj;
+  .admin.gridUp:(.admin.gridi;.admin.gridj)#0b;
+  .admin.gridReady:(.admin.gridi;.admin.gridj)#0b;
   };
-  
+
+/ function called by grid cells to notify about the new state
 .admin.upd:{[t;ci;cj;state]
   .log.info[`admin] "update:", .Q.s1 (t;ci;cj;state);
   // `.admin.updates insert (t;ci;cj;state);  
@@ -27,17 +43,30 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
   .admin.updCount[t]+:1;
   .admin.states[t;ci;cj]:state;
   if[.admin.updCount[t]~.admin.gridCount;
-    .log.info[`admin] "step ",(string t)," completed";
+    //.log.info[`admin] "step ",(string t)," completed";
     `.admin.frames insert (t;.z.p;.admin.states t);
-    if[.admin.wsh<0;.admin.wsh ","sv{{$[x;"1";"0"]} each x} each .admin.states t];
+    if[.admin.wsh<0;.admin.wsh .admin.bToString .admin.states t];
     .admin.states _:t;
     .admin.updCount _:t;
     ];
   :t;
   };
+    
+/ records information when a cell connects to admin 
+.admin.cellsUp:([] ts:`timestamp$();ci:`long$();cj:`long$();server:`$());
+.admin.cellUp:{[ci;cj]
+    .admin.gridUp[ci;cj]:1b;
+    / send up state info to GUI
+    if[.admin.wsh<0;.admin.wsh .admin.bToString .admin.gridUp];
+    server:`$"grid.cell_",string cj+ci*.admin.gridj;
+    `.admin.cellsUp insert (.z.p;ci;cj;server);
+    };
   
-.admin.cellsReady:([] ts:`timestamp$();ci:`long$();cj:`long$();server:`$());
+/ function called by a grid cell to notify that all its connections are up
 .admin.cellReady:{[ci;cj]
+  .admin.gridReady[ci;cj]:1b;
+  / send ready state info to GUI
+  // if[.admin.wsh<0;.admin.wsh .admin.bToString .admin.gridReady];
   server:`$"grid.cell_",string cj+ci*.admin.gridj;
   `.admin.cellsReady insert (.z.p;ci;cj;server);
   .hnd.hopen[server;100i;`eager];
@@ -51,22 +80,20 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
     ];
   };
   
+/---------------------- web socket code ----------------------------
+
+/ converts an array of bools into string for sending over web socket
+.admin.bToString:{","sv {{$[x;"1";"0"]} each x} each x};
+  
 .admin.wsh:0;
 
+/ overwrite z.ws
 .z.ws:{
   .log.info[`admin] "web socket connection, command ",.Q.s1 x;
   .admin.wsh:neg .z.w;
-  s:","sv{{$[x;"1";"0"]} each x} each (.admin.gridi;.admin.gridj)#1b;
-  .log.info[`admin] "sending ",s;
-  .admin.wsh s;
+  .admin.wsh .admin.bToString (.admin.gridi;.admin.gridj)#1b;
   };
 
-.admin.states:()!();
-.admin.updCount:()!();
 
-//.admin.updates:([] t:`long$();ci:`long$();cj:`long$();state:`boolean$());
-
-/ table that collects the results of the simulation
-.admin.frames:([] t:`long$();ts:`timestamp$();frame:());
-
+/ run the script as an EC component
 .sl.run[`admin; `.sl.main;`];
