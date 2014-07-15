@@ -34,8 +34,8 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
   .cell.rules[1b]:00110000b;
   / add a callback to run when conection to the admin is open
   .hnd.poAdd[`life.admin;`.cell.onAdminConnection];
-  / open connection to the admin with timeout set to 100ms
-  .hnd.hopen[`life.admin;100i;`eager];
+  / open connection to the admin with timeout set to 500ms
+  .hnd.hopen[`life.admin;500i;`eager];
   };
   
 / figures out the neibors' names from the grid dimensions and cell coordinates
@@ -51,9 +51,9 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
 / function that runs on successful admin connection
 .cell.onAdminConnection:{[admin]
   .log.info[`cell] "successful admin connection";
-  .hnd.h[`life.admin](`.admin.cellUp;.cell.i;.cell.j);
+  .hnd.ah[`life.admin](`.admin.cellUp;.cell.i;.cell.j);
   / tell the admin the timestep, cooordinates and initial state
-  .hnd.h[`life.admin](`.admin.upd;0;.cell.i;.cell.j;.cell.initState);
+  .hnd.ah[`life.admin](`.admin.upd;0;.cell.i;.cell.j;.cell.initState);
   / set up the callbacks and open the connections to neighbors
   .hnd.poAdd[;`.cell.onCellConnection] each .cell.neighbors;
   .log.info[`cell] "opening connections to neighbors";

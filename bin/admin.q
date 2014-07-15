@@ -86,7 +86,6 @@ system"l ",getenv[`EC_QSL_PATH],"/sl.q";
 .admin.bToString:{","sv {{$[x;"1";"0"]} each x} each x};
   
 .admin.wsh:0;
-
 / overwrite z.ws
 .z.ws:{
   .log.info[`admin] "web socket connection, command ",.Q.s1 x;
