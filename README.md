@@ -1,7 +1,7 @@
 Conway's Game of Life with KDB+ and Enterprise Components
 =========================================================
 
-For information on what is this, please have a look at [this](https://slawekk.wordpress.com/2014/05/20/game-of-life-with-enterprise-components/) post at the  Formalized Mathematics blog.
+For information on what this is, please have a look at [this](https://slawekk.wordpress.com/2014/05/20/game-of-life-with-enterprise-components/) post at the  Formalized Mathematics blog.
 
 Setup
 -----
