@@ -9,19 +9,19 @@ Setup
 Download KDB+, yak and DEVnet's Enterprise Components:
 
 ```bash
-  $ wget http://www.devnet.de/fileadmin/downloads/ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz
-  $ tar -xvf ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz
+  $ wget https://github.com/exxeleron/enterprise-components/releases/download/ec-3.2.3/ec_v3.2.3_DemoSystem_Linux32bit_Lessons_1-5.tgz
+  $ tar -xvf ec_v3.2.3_DemoSystem_Linux32bit_Lessons_1-5.tgz
 ```
 
-Set up directory structure expected by the configuration in any empty directory
+Set up directory structure expected by the configuration:
 
 ```bash
   $ mkdir bin
   $ ln -s ../DemoSystem/bin/ec/ bin/ec
   $ ln -s ../DemoSystem/bin/q/  bin/q
   $ ln -s ../DemoSystem/bin/yak/  bin/yak
-  $ ln -s <path to the LifeWithEC distribution> bin/life
-  $ ln -s <path to the LifeWithEC distribution>/etc/ etc
+  $ ln -s <path to the LifeWithEC clone bin/life
+  $ ln -s <path to the LifeWithEC clone>/etc/ etc
 ```
   The last command has to be done from the same directory where the bin directory was created above.
 
@@ -36,7 +36,7 @@ Check if yak is working
 ```bash
   yak info life
 ```
-  Yak distributed with ec_v3.0.0_DemoSystem_Linux32bit_Lessons_1-3.tgz is a 32bit application. If you are running a 64-bit system you may have to install some compatibility libraries.
+  Yak distributed with Enterprise Components is a 32bit application. If you are running a 64-bit system you may have to install some compatibility libraries.
 
 
 Start the admin process
@@ -89,10 +89,12 @@ Check the port the life.admin process is listening at
 ```
 
 You can connect to the life.admin component with KDBstudio or a similar application to have a look at the result of the simulation.
+Alternatively you can use the a web browser and the (elm application)[https://github.com/SKolodynski/LifeWithEC/tree/master/elm].
 
 All processes can be stopped with
   
 ```bash
   $ yak stop \*
 ```
+
 
