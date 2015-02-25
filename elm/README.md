@@ -1,7 +1,7 @@
 Web browser view of LifeWithEC
 ==============================
  
-This is elm source for the app that allows to view the result of the LifeWithEC simulation in your web browser.
+This is elm source for the app that allows viewing the result of the LifeWithEC simulation in your web browser.
 Compile the `life.elm` file with 
  
 ```bash
