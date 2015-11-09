@@ -1,5 +1,7 @@
 Web browser view of LifeWithEC
 ==============================
+
+ __The Elm code in this project is not maintained and does not work with current (post 0.15.x) Elm releases. In particular, Elm [support for web sockets](https://groups.google.com/forum/?fromgroups#!topic/elm-discuss/kFoIXJHNmkc) has changed.__
  
 This is elm source for the app that allows viewing the result of the LifeWithEC simulation in your web browser.
 Compile the `life.elm` file with 
